@@ -3,10 +3,10 @@ import {deskTool} from 'sanity/desk'
 import { visionTool } from "@sanity/vision";
 
 const config = defineConfig({
-    projectId: 'j5dv56h1',
+    projectId: process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID!,
     dataset: "production",
     title: 'Rice Maestro Sanity Studio',
-    apiVersion: "2023-06-13",
+    apiVersion: "2023-06-14",
     basePath: "/admin",
     plugins: [deskTool(), visionTool()],
     // schema: { types: schemas }

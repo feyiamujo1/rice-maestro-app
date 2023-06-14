@@ -1,5 +1,7 @@
+import process from "process"
+
 const config = {
-    projectId: "j5dv56h1",
+    projectId: process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID!,
     dataset: "production",
     apiVersion: "2023-06-13",
 } 
