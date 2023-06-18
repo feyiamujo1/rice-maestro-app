@@ -8,11 +8,14 @@ import { cn } from "~/lib/utils"
 import { Input } from "./ui/input";
 import { useForm } from "react-hook-form"
 import { Button } from "./ui/button";
+import { NewPasswordFormSchema } from "~/lib/validation-schema";
 
 export default function ChangePasswordForm(){
-    const form = useForm();
+    const form = useForm<z.infer<typeof NewPasswordFormSchema>>({
+        resolver: zodResolver(NewPasswordFormSchema)
+    });
 
-    const onSubmit = (value: any) =>{
+    const onSubmit = (value: z.infer<typeof NewPasswordFormSchema>) =>{
         console.log(value);
     }
 
@@ -24,7 +27,7 @@ export default function ChangePasswordForm(){
                 name="password"
                 render={({ field }) => (
                     <FormItem>
-                        <FormLabel>New password</FormLabel>
+                        <FormLabel>Password</FormLabel>
                         <FormControl>
                             <Input className="focus:ring-[#2c963f] focus:ring-1" type="password" placeholder="password" {...field} />
                         </FormControl>
@@ -34,7 +37,7 @@ export default function ChangePasswordForm(){
                 />
                 <FormField
                 control={form.control}
-                name="_confirm_password"
+                name="confirm_password"
                 render={({ field }) => (
                     <FormItem>
                         <FormLabel>Confirm password.</FormLabel>

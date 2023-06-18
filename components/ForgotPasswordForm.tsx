@@ -3,16 +3,18 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { cn } from "~/lib/utils"
 
 import { Input } from "./ui/input";
 import { useForm } from "react-hook-form"
 import { Button } from "./ui/button";
+import { ForgotPasswordFormSchema } from "~/lib/validation-schema";
 
 export default function ForgotPasswordForm(){
-    const form = useForm();
+    const form = useForm<z.infer<typeof ForgotPasswordFormSchema>>({
+        resolver: zodResolver(ForgotPasswordFormSchema)
+    });
 
-    const onSubmit = (value: any) =>{
+    const onSubmit = (value: z.infer<typeof ForgotPasswordFormSchema>) =>{
         console.log(value);
     }
 

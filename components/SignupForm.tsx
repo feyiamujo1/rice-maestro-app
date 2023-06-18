@@ -4,11 +4,16 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "./ui/input";
 import { useForm } from "react-hook-form"
 import { Button } from "./ui/button";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { SignupFormSchema } from "~/lib/validation-schema";
+import * as z from "zod"
 
 export default function SignupForm(){
-    const form = useForm();
+    const form = useForm<z.infer<typeof SignupFormSchema>>({
+        resolver: zodResolver(SignupFormSchema)
+    });
 
-    const onSubmit = (value: any) =>{
+    const onSubmit = (value: z.infer<typeof SignupFormSchema>) =>{
         console.log(value);
     }
     return(
@@ -16,7 +21,7 @@ export default function SignupForm(){
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
                 <FormField
                 control={form.control}
-                name="Name"
+                name="name"
                 render={({ field }) => (
                     <FormItem>
                         <FormLabel>Full Name</FormLabel>

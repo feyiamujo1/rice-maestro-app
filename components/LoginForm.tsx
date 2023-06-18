@@ -3,16 +3,18 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { cn } from "~/lib/utils"
 
 import { Input } from "./ui/input";
 import { useForm } from "react-hook-form"
 import { Button } from "./ui/button";
+import { LoginFormSchema } from "~/lib/validation-schema";
 
 export default function LoginForm(){
-    const form = useForm();
+    const form = useForm<z.infer<typeof LoginFormSchema>>({
+        resolver: zodResolver(LoginFormSchema)
+    });
 
-    const onSubmit = (value: any) =>{
+    const onSubmit = (value: z.infer<typeof LoginFormSchema>) =>{
         console.log(value);
     }
 

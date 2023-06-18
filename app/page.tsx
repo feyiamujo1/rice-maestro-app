@@ -25,7 +25,7 @@ export default function Home() {
         </div>
       </nav>
       <div className='flex flex-col md:flex-row w-full md:h-screen min-h-screen mx-auto'>
-          <div className='w-full md:w-[950px] bg-login-image bg-cover bg-[60%] flex items-end py-8 md:py-10' >
+          <div className='w-full md:w-[700px] xl:w-[950px] bg-login-image bg-cover bg-[60%] flex items-end py-8 md:py-10' >
             <div className='w-11/12 md:w-10/12 mx-auto text-white space-y-6'>
               <div>
                 <h1 className='text-xl md:text-2xl font-semibold text-primary'>The Rice Farmer's Guide</h1>
@@ -44,8 +44,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className='w-full flex justify-center items-center'>
-            <div className='w-11/12 md:w-[400px] mx-auto space-y-3 py-8 md:mt-10' >
+          <div className='w-full flex justify-center items-center md:overflow-y-scroll'>
+            <div className='w-11/12 sm:w-[400px] md:w-[350px] xl:w-[400px] mx-auto space-y-3 py-8 md:py-28 md:mt-24' >
               {
                 showCurrentForm === "login" ?
                   <div className='space-y-4 mb-10 md:mb-0'>
