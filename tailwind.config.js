@@ -55,7 +55,7 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
-        'login-image': "linear-gradient(rgba(0, 0, 0, 0.45), rgba(2, 19, 10, 1)) , url('/images/pexels-safari-consoler-11196642.jpg')",
+        'login-image': "linear-gradient(rgba(0, 0, 0, 0.55), rgba(2, 19, 10, 1)) , url('/images/pexels-safari-consoler-11196642.jpg')",
       },
     },
   },

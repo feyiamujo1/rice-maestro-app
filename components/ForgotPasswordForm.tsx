@@ -9,7 +9,7 @@ import { Input } from "./ui/input";
 import { useForm } from "react-hook-form"
 import { Button } from "./ui/button";
 
-export default function LoginForm(){
+export default function ForgotPasswordForm(){
     const form = useForm();
 
     const onSubmit = (value: any) =>{
@@ -24,7 +24,7 @@ export default function LoginForm(){
                 name="email"
                 render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>A password reset link will be sent to the email you provide below.</FormLabel>
                         <FormControl>
                             <Input className="focus:ring-[#2c963f] focus:ring-1" type="email" placeholder="email" {...field} />
                         </FormControl>
@@ -32,21 +32,8 @@ export default function LoginForm(){
                     </FormItem>
                 )}
                 />
-                <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                            <Input className="focus:ring-[#2c963f] focus:ring-1" type="password" placeholder="password" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}
-                />
                 <div className="mt-6">
-                    <Button className={"w-full text-white font-medium text-lg bg-[#2c963f] hover:bg-[#59b26a]"} type="submit">Login</Button>
+                    <Button className={"w-full text-white font-medium text-lg bg-[#2c963f] hover:bg-[#59b26a]"} type="submit">Send</Button>
                 </div>
             </form>
         </Form>

@@ -9,7 +9,7 @@ import { Input } from "./ui/input";
 import { useForm } from "react-hook-form"
 import { Button } from "./ui/button";
 
-export default function LoginForm(){
+export default function ChangePasswordForm(){
     const form = useForm();
 
     const onSubmit = (value: any) =>{
@@ -21,12 +21,12 @@ export default function LoginForm(){
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
                 <FormField
                 control={form.control}
-                name="email"
+                name="password"
                 render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>New password</FormLabel>
                         <FormControl>
-                            <Input className="focus:ring-[#2c963f] focus:ring-1" type="email" placeholder="email" {...field} />
+                            <Input className="focus:ring-[#2c963f] focus:ring-1" type="password" placeholder="password" {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -34,10 +34,10 @@ export default function LoginForm(){
                 />
                 <FormField
                 control={form.control}
-                name="password"
+                name="_confirm_password"
                 render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel>Confirm password.</FormLabel>
                         <FormControl>
                             <Input className="focus:ring-[#2c963f] focus:ring-1" type="password" placeholder="password" {...field} />
                         </FormControl>
@@ -46,7 +46,7 @@ export default function LoginForm(){
                 )}
                 />
                 <div className="mt-6">
-                    <Button className={"w-full text-white font-medium text-lg bg-[#2c963f] hover:bg-[#59b26a]"} type="submit">Login</Button>
+                    <Button className={"w-full text-white font-medium text-lg bg-[#2c963f] hover:bg-[#59b26a]"} type="submit">Confirm</Button>
                 </div>
             </form>
         </Form>
