@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { LoginFormSchema } from "~/lib/validation-schema";
+import { ForgotPasswordFormSchema } from "~/lib/validation-schema";
 
 import { Button } from "./ui/button";
 import {
@@ -17,12 +17,12 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 
-export default function LoginForm() {
-  const form = useForm<z.infer<typeof LoginFormSchema>>({
-    resolver: zodResolver(LoginFormSchema),
+export default function ForgotPasswordForm() {
+  const form = useForm<z.infer<typeof ForgotPasswordFormSchema>>({
+    resolver: zodResolver(ForgotPasswordFormSchema),
   });
 
-  const onSubmit = (value: z.infer<typeof LoginFormSchema>) => {
+  const onSubmit = (value: z.infer<typeof ForgotPasswordFormSchema>) => {
     console.log(value);
   };
 
@@ -34,30 +34,15 @@ export default function LoginForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>
+                A password reset link will be sent to the email you provide
+                below.
+              </FormLabel>
               <FormControl>
                 <Input
                   className="focus:ring-1 focus:ring-[#2c963f]"
                   type="email"
                   placeholder="email"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input
-                  className="focus:ring-1 focus:ring-[#2c963f]"
-                  type="password"
-                  placeholder="password"
                   {...field}
                 />
               </FormControl>
@@ -72,7 +57,7 @@ export default function LoginForm() {
             }
             type="submit"
           >
-            Login
+            Send
           </Button>
         </div>
       </form>

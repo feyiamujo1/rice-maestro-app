@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { LoginFormSchema } from "~/lib/validation-schema";
+import { NewPasswordFormSchema } from "~/lib/validation-schema";
 
 import { Button } from "./ui/button";
 import {
@@ -17,12 +17,12 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 
-export default function LoginForm() {
-  const form = useForm<z.infer<typeof LoginFormSchema>>({
-    resolver: zodResolver(LoginFormSchema),
+export default function ChangePasswordForm() {
+  const form = useForm<z.infer<typeof NewPasswordFormSchema>>({
+    resolver: zodResolver(NewPasswordFormSchema),
   });
 
-  const onSubmit = (value: z.infer<typeof LoginFormSchema>) => {
+  const onSubmit = (value: z.infer<typeof NewPasswordFormSchema>) => {
     console.log(value);
   };
 
@@ -31,15 +31,15 @@ export default function LoginForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <FormField
           control={form.control}
-          name="email"
+          name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
                   className="focus:ring-1 focus:ring-[#2c963f]"
-                  type="email"
-                  placeholder="email"
+                  type="password"
+                  placeholder="password"
                   {...field}
                 />
               </FormControl>
@@ -49,10 +49,10 @@ export default function LoginForm() {
         />
         <FormField
           control={form.control}
-          name="password"
+          name="confirm_password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Confirm password.</FormLabel>
               <FormControl>
                 <Input
                   className="focus:ring-1 focus:ring-[#2c963f]"
@@ -72,7 +72,7 @@ export default function LoginForm() {
             }
             type="submit"
           >
-            Login
+            Confirm
           </Button>
         </div>
       </form>

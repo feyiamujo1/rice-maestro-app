@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { LoginFormSchema } from "~/lib/validation-schema";
+import { SignupFormSchema } from "~/lib/validation-schema";
 
 import { Button } from "./ui/button";
 import {
@@ -17,18 +17,35 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 
-export default function LoginForm() {
-  const form = useForm<z.infer<typeof LoginFormSchema>>({
-    resolver: zodResolver(LoginFormSchema),
+export default function SignupForm() {
+  const form = useForm<z.infer<typeof SignupFormSchema>>({
+    resolver: zodResolver(SignupFormSchema),
   });
 
-  const onSubmit = (value: z.infer<typeof LoginFormSchema>) => {
+  const onSubmit = (value: z.infer<typeof SignupFormSchema>) => {
     console.log(value);
   };
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Full Name</FormLabel>
+              <FormControl>
+                <Input
+                  className="focus:ring-1 focus:ring-[#2c963f]"
+                  type="text"
+                  placeholder="Fullname"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="email"
@@ -40,6 +57,24 @@ export default function LoginForm() {
                   className="focus:ring-1 focus:ring-[#2c963f]"
                   type="email"
                   placeholder="email"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone Number</FormLabel>
+              <FormControl>
+                <Input
+                  className="focus:ring-1 focus:ring-[#2c963f]"
+                  type="tel"
+                  placeholder="phone number"
                   {...field}
                 />
               </FormControl>
@@ -72,7 +107,7 @@ export default function LoginForm() {
             }
             type="submit"
           >
-            Login
+            Register
           </Button>
         </div>
       </form>
