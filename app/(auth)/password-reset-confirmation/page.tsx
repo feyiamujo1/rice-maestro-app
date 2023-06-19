@@ -24,7 +24,7 @@ export default function page() {
         <p className="text-center">
           Didn&apos;t receive any code?{" "}
           <Link
-            href="/auth/forgot-password"
+            href="/forgot-password"
             className="cursor-pointer font-semibold text-[#2c963f] hover:text-[#59b26a]"
           >
             Resend Code

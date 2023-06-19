@@ -14,7 +14,7 @@ export default function page() {
           Already have an account?{" "}
           <Link
             className="cursor-pointer font-semibold text-[#2c963f] hover:text-[#59b26a]"
-            href="/auth"
+            href="/login"
           >
             Login
           </Link>
@@ -23,7 +23,7 @@ export default function page() {
           Do not have an account yet?{" "}
           <Link
             className="cursor-pointer font-semibold text-[#2c963f] hover:text-[#59b26a]"
-            href="/auth/register"
+            href="/register"
           >
             Register
           </Link>
