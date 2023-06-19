@@ -19,4 +19,7 @@ export const ForgotPasswordFormSchema = z.object({
 export const NewPasswordFormSchema = z.object({
     password: z.string().min(5, { message: "Must be 5 or more characters long" }),
     confirm_password: z.string().min(5, { message: "Must be 5 or more characters long" })
-})
+}).refine((data) => data.password === data.confirm_password, {
+    path: ["confirm_password"],
+    message: "Passwords do not match",
+  })
