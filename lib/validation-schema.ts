@@ -8,7 +8,7 @@ export const LoginFormSchema = z.object({
 export const SignupFormSchema = z.object({
   name: z.string().min(5, { message: "Must be 5 or more characters long" }),
   email: z.string().email({ message: "Invalid email address" }),
-  phone: z.number().gte(11, { message: "Invalid phone number" }),
+  phone: z.string().min(11, { message: "Invalid phone number" }),
   password: z.string().min(5, { message: "Must be 5 or more characters long" }),
 });
 

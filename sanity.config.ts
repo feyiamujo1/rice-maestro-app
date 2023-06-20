@@ -2,6 +2,8 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 
+import { schemaTypes } from "./schemas";
+
 const config = defineConfig({
   projectId: process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID!,
   dataset: "production",
@@ -9,7 +11,7 @@ const config = defineConfig({
   apiVersion: "2023-06-14",
   basePath: "/admin",
   plugins: [deskTool(), visionTool()],
-  // schema: { types: schemas }
+  schema: { types: schemaTypes },
 });
 
 export default config;
