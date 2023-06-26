@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Admin | Upland Rice Maestro",
   description:
@@ -11,9 +9,5 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div>
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }
