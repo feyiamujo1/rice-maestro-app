@@ -3,7 +3,7 @@ import { getSection } from "~/sanity/sanity-utils";
 
 type Props = {
   params: { section: string };
-}
+};
 
 export default async function SectionPage({ params }: Props) {
   const slug = params.section;
@@ -12,9 +12,7 @@ export default async function SectionPage({ params }: Props) {
 
   return (
     <div>
-      <PortableText 
-        value={section?.content}
-      />
+      <PortableText value={section?.content} />
     </div>
   );
 }

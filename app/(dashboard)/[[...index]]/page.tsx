@@ -8,7 +8,6 @@ export const metadata = {
 };
 
 export default async function MainDashboard() {
-
   const section = await getSection("dashboard");
 
   return (

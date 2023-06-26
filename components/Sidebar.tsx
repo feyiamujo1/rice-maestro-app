@@ -21,9 +21,7 @@ export default function SideBar() {
       >
         <Link href="/" className="flex w-full items-center gap-2">
           <MdDashboard className="text-2xl md:text-lg" />
-          <span className="hidden md:block">
-            Home
-          </span>
+          <span className="hidden md:block">Home</span>
         </Link>
       </p>
       <p
@@ -38,9 +36,7 @@ export default function SideBar() {
           className="flex w-full items-center gap-2"
         >
           <RiLandscapeFill className="text-2xl md:text-lg" />
-          <span className="hidden md:block">
-            Land Information
-          </span>
+          <span className="hidden md:block">Land Information</span>
         </Link>
       </p>
       <p
@@ -55,9 +51,7 @@ export default function SideBar() {
           className="flex w-full items-center gap-2"
         >
           <GiPlantSeed className="text-2xl md:text-lg" />
-          <span className="hidden md:block">
-            Seedling Information
-          </span>
+          <span className="hidden md:block">Seedling Information</span>
         </Link>
       </p>
       <p
@@ -72,9 +66,7 @@ export default function SideBar() {
           className="flex w-full items-center gap-2"
         >
           <GiFertilizerBag className="text-2xl md:text-lg" />
-          <span className="hidden md:block">
-            Fertilizer Information
-          </span>
+          <span className="hidden md:block">Fertilizer Information</span>
         </Link>
       </p>
       <p
@@ -88,10 +80,8 @@ export default function SideBar() {
           href="/weeding-information"
           className="flex w-full items-center gap-2"
         >
-            <TbPlant2Off className="text-2xl md:text-lg" />
-            <span className="hidden md:block">
-                Weeding Information
-            </span>
+          <TbPlant2Off className="text-2xl md:text-lg" />
+          <span className="hidden md:block">Weeding Information</span>
         </Link>
       </p>
       <p
@@ -106,9 +96,7 @@ export default function SideBar() {
           className="flex w-full items-center gap-2"
         >
           <MdPestControl className="text-2xl md:text-lg" />
-          <span className="hidden md:block">
-            Pests & Diseases Control
-          </span>
+          <span className="hidden md:block">Pests & Diseases Control</span>
         </Link>
       </p>
       <p
@@ -123,9 +111,7 @@ export default function SideBar() {
           className="flex w-full items-center gap-2"
         >
           <FaTractor className="text-2xl md:text-lg" />
-          <span className="hidden md:block">
-            Harvesting Processes
-          </span>
+          <span className="hidden md:block">Harvesting Processes</span>
         </Link>
       </p>
       <p
@@ -140,9 +126,7 @@ export default function SideBar() {
           className="flex w-full items-center gap-2"
         >
           <GiBarn className="text-2xl md:text-lg" />
-          <span className="hidden md:block">
-            Post Harvest Processes
-        </span>
+          <span className="hidden md:block">Post Harvest Processes</span>
         </Link>
       </p>
       <p
@@ -157,9 +141,7 @@ export default function SideBar() {
           className="flex w-full items-center gap-2"
         >
           <FaMoneyBillTrendUp className="text-2xl md:text-lg" />
-          <span className="hidden md:block">
-            Market Price & Information
-          </span>
+          <span className="hidden md:block">Market Price & Information</span>
         </Link>
       </p>
     </div>
