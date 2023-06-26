@@ -10,6 +10,7 @@ const config = defineConfig({
   title: "Rice Maestro Sanity Studio",
   apiVersion: "2023-06-14",
   basePath: "/admin",
+  useCdn: true,
   plugins: [deskTool(), visionTool()],
   schema: { types: schemaTypes },
 });

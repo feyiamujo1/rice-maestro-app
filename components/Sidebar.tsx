@@ -45,13 +45,13 @@ export default function SideBar() {
       </p>
       <p
         className={
-          currentRoute === "/seed-information"
+          currentRoute === "/seedling-information"
             ? "flex cursor-pointer items-center gap-2 rounded-md bg-custom-green px-2 py-1.5 text-base font-semibold text-white transition-all hover:bg-custom-hover-green"
             : "flex cursor-pointer items-center gap-2 rounded-md bg-[#f9fafb] px-2 py-1.5 text-base font-semibold text-black transition-all hover:bg-custom-green hover:text-white"
         }
       >
         <Link
-          href="/seed-information"
+          href="/seedling-information"
           className="flex w-full items-center gap-2"
         >
           <GiPlantSeed className="text-2xl md:text-lg" />
@@ -96,13 +96,13 @@ export default function SideBar() {
       </p>
       <p
         className={
-          currentRoute === "/pest-disease-control"
+          currentRoute === "/pests-and-diseases-control"
             ? "flex cursor-pointer items-center gap-2 rounded-md bg-custom-green px-2 py-1.5 text-base font-semibold text-white transition-all hover:bg-custom-hover-green"
             : "flex cursor-pointer items-center gap-2 rounded-md bg-[#f9fafb] px-2 py-1.5 text-base font-semibold text-black transition-all hover:bg-custom-green hover:text-white"
         }
       >
         <Link
-          href="/pest-disease-control"
+          href="/pests-and-diseases-control"
           className="flex w-full items-center gap-2"
         >
           <MdPestControl className="text-2xl md:text-lg" />
