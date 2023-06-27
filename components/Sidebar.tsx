@@ -47,14 +47,14 @@ const routes = [
     path: "/harvesting-processes",
   },
   {
-    name: "Post Harvest Processes",
+    name: "Post Harvesting Processes",
     icon: <GiBarn className="text-2xl md:text-lg" />,
-    path: "post-harvest-processes",
+    path: "/post-harvesting-processes",
   },
   {
     name: "Market Price & Information",
     icon: <FaMoneyBillTrendUp className="text-2xl md:text-lg" />,
-    path: "market-price-and-information",
+    path: "/market-price-and-information",
   },
 ];
 
