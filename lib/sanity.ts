@@ -1,6 +1,6 @@
 import { createClient } from "next-sanity";
 
-const config = createClient({
+const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID!,
   dataset: "production",
   apiVersion: "2023-06-13",
@@ -8,4 +8,4 @@ const config = createClient({
   useCdn: process.env.NODE_ENV === "production",
 });
 
-export default config;
+export default client;

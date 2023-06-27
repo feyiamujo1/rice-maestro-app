@@ -79,7 +79,7 @@ export default function DashboardLayout({
           </div>
         </div>
       </nav>
-      <div className=" mr-2 flex h-full w-full gap-2 md:mr-4 md:gap-4">
+      <div className="relative mr-2 flex h-full w-full gap-2 md:mr-4 md:gap-4">
         <SideBar />
         <main className="w-full bg-white px-2 pt-[90px] shadow-lg md:px-6">
           <div className="py-4 ">{children}</div>

@@ -11,7 +11,7 @@ export default async function SectionPage({ params }: Props) {
   const section = await getSection(slug);
 
   return (
-    <div>
+    <div className="prose">
       <PortableText value={section?.content} />
     </div>
   );
