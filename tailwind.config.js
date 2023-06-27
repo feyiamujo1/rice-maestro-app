@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -57,9 +57,10 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
-        'login-image': "linear-gradient(rgba(0, 0, 0, 0.55), rgba(2, 19, 10, 1)) , url('/images/pexels-safari-consoler-11196642.jpg')",
+        "login-image":
+          "linear-gradient(rgba(0, 0, 0, 0.55), rgba(2, 19, 10, 1)) , url('/images/pexels-safari-consoler-11196642.jpg')",
       },
     },
   },
-  plugins: [],
-}
+  plugins: [require("@tailwindcss/typography")],
+};
