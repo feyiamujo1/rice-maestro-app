@@ -27,7 +27,7 @@
     "lucide-react": "^0.244.0",
     "next": "13.4.5",
     "next-auth": "^4.22.1",
-    "next-auth-sanity": "^1.5.0",
+    "next-auth-sanity": "^1.5.1",
     "next-sanity": "^4.3.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",

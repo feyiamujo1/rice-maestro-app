@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import { signUp } from "next-auth-sanity/client";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -31,15 +30,24 @@ export default function SignupForm() {
   });
 
   const onSubmit = async (value: z.infer<typeof SignupFormSchema>) => {
-    console.log(value);
     setLoading(true);
     setError("");
 
     try {
-      const user = await signUp({
-        ...value,
-      });
-      console.log(user);
+      const newUser = await (
+        await fetch("http://localhost:3000/api/sanity/signUp", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(value),
+        })
+      ).json();
+
+      if (newUser?.error) {
+        setError(newUser.error);
+        return;
+      }
 
       const res = await signIn("sanity-login", {
         redirect: false,
@@ -48,15 +56,12 @@ export default function SignupForm() {
       });
 
       if (res?.error) {
-        console.log(res);
         setError(res.error);
         return;
       }
 
       router.push("/");
     } catch (error) {
-      console.log(error);
-
       setError("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);

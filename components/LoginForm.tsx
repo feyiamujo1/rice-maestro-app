@@ -41,15 +41,12 @@ export default function LoginForm() {
       });
 
       if (res?.error) {
-        console.log(res);
         setError("Invalid email or password.");
         return;
       }
 
       router.push("/");
     } catch (error) {
-      console.log(error);
-
       setError("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);
