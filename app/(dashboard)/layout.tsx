@@ -1,12 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { Squash as Hamburger } from "hamburger-react";
 import { LogOut, User } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import { BsFillBellFill } from "react-icons/bs";
 
+import { NotificationCard } from "~/components/NotificationCard";
+import { Button } from "~/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTrigger
+} from "~/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +24,10 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "~/components/ui/dropdown-menu";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 // import { ToastWithAction } from "~/components/CustomToast";
 import SideBar from "~/components/Sidebar";
 
@@ -56,13 +68,20 @@ export default function DashboardLayout({
             </p>
           </div>
           <div className="flex w-fit items-center gap-3">
-            <div className="group relative flex w-fit cursor-pointer items-center">
-              <BsFillBellFill className="fill-custom-green text-2xl group-hover:fill-custom-hover-green" />
-              <span className="absolute -right-2 -top-3 rounded-full bg-red-600 px-1.5 py-0.5 text-xs text-white">
-                2
-              </span>
-            </div>
-            <div className="group relative flex h-12 w-12 cursor-pointer items-center rounded-full">
+            <Dialog>
+              <DialogTrigger>
+                <div className="group relative flex w-fit cursor-pointer items-center">
+                  <BsFillBellFill className="fill-custom-green text-2xl group-hover:fill-custom-hover-green" />
+                  <span className="absolute -right-2 -top-3 rounded-full bg-red-600 px-1.5 py-0.5 text-xs text-white">
+                    4
+                  </span>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="max-w-[365px] gap-y-2 rounded-lg sm:max-w-[425px]">
+                <NotificationCard />
+              </DialogContent>
+            </Dialog>
+            <div className="group relative flex h-12 w-12 cursor-pointer items-center overflow-hidden rounded-full">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Image
@@ -71,7 +90,6 @@ export default function DashboardLayout({
                     alt="profile"
                     width={55}
                     height={55}
-                    style={{ width: "auto" }}
                   />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="mr-2 w-56">
@@ -82,11 +100,72 @@ export default function DashboardLayout({
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuGroup>
-                    <DropdownMenuItem className=" cursor-pointer focus:bg-custom-green focus:text-white">
-                      <User className="mr-2 h-4 w-4" />
-                      <span>Profile</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className=" cursor-pointer focus:bg-custom-green focus:text-white">
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button className="w-full items-center justify-start bg-white px-1.5 text-left text-black hover:bg-custom-green hover:text-white active:bg-custom-hover-green">
+                          <User className="mr-2 h-4 w-4" />
+                          <span>Edit Profile</span>
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-[365px] gap-y-2 rounded-lg sm:max-w-[425px]">
+                        <DialogHeader>
+                          <DialogDescription className="pt-3 text-left text-base text-custom-green">
+                            Make changes to your profile here. Click save when
+                            you're done.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                          <div className="grid grid-cols-4 items-center gap-2">
+                            <Label htmlFor="name" className="text-left">
+                              Full Name
+                            </Label>
+                            <Input id="name" className="col-span-3" required />
+                          </div>
+                          <div className="grid grid-cols-4 items-center gap-2">
+                            <Label htmlFor="username" className="text-left">
+                              Phone
+                            </Label>
+                            <Input
+                              id="phone"
+                              type="tel"
+                              className="col-span-3"
+                              required
+                            />
+                          </div>
+                          <div className="grid grid-cols-4 items-center gap-2">
+                            <Label htmlFor="password" className="text-left">
+                              New Password
+                            </Label>
+                            <Input
+                              id="phone"
+                              type="password"
+                              className="col-span-3"
+                              required
+                            />
+                          </div>
+                          <div className="grid grid-cols-4 items-center gap-2">
+                            <Label htmlFor="username" className="text-left">
+                              Confirm Password
+                            </Label>
+                            <Input
+                              id="phone"
+                              type="password"
+                              className="col-span-3"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <DialogFooter className=" flex flex-row items-center justify-end gap-4">
+                          <Button
+                            type="submit"
+                            className="text-white hover:bg-custom-hover-green"
+                          >
+                            Save changes
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                    <DropdownMenuItem className=" cursor-pointer py-2 focus:bg-custom-green focus:text-white">
                       <Link className="flex" href="/login">
                         <LogOut className="mr-2 h-4 w-4" />
                         <span>Log out</span>
@@ -103,7 +182,6 @@ export default function DashboardLayout({
         <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
         <main className="w-full bg-white px-2 pb-10 pt-[90px] shadow-lg md:ml-[338px] md:px-6 ">
           <div className="py-4">{children}</div>
-          {/* <Toast /> */}
         </main>
       </div>
     </div>

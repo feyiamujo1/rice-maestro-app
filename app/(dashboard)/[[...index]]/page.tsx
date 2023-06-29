@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 import { getSection } from "~/sanity/sanity-utils";
 
@@ -16,6 +17,10 @@ export default async function MainDashboard({
 }) {
   const path = paramToPath(params.index);
   const section = await getSection(path === "/" ? "dashboard" : path);
+
+  if (!section) {
+    notFound();
+  }
 
   return (
     <div className="prose">
