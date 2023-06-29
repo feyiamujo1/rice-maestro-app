@@ -77,6 +77,7 @@ export default function SideBar({
     >
       {routes.map((route) => (
         <div
+          key={route.name}
           onClick={() => {
             setIsOpen(!isOpen);
           }}
