@@ -1,13 +1,14 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+// import { ToastWithAction } from "~/components/CustomToast";
 import { Squash as Hamburger } from "hamburger-react";
 import { LogOut, User } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import { signOut } from "next-auth/react";
 import { BsFillBellFill } from "react-icons/bs";
 
-import { NotificationCard } from "~/components/NotificationCard";
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
@@ -15,7 +16,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTrigger
+  DialogTrigger,
 } from "~/components/ui/dialog";
 import {
   DropdownMenu,
@@ -24,11 +25,11 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-// import { ToastWithAction } from "~/components/CustomToast";
+import { NotificationCard } from "~/components/NotificationCard";
 import SideBar from "~/components/Sidebar";
 
 // import { Toast } from "~/components/ui/toast";
@@ -39,6 +40,22 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const logout = async () => {
+    setLoading(true);
+    try {
+      const data = await signOut({ redirect: false, callbackUrl: "/login" });
+
+      router.push(data.url);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className=" m-0 flex min-h-screen w-full bg-[#f9fafb] p-0">
       <nav className="fixed inset-x-0 top-0 z-50 w-full bg-white py-2 shadow-md">
@@ -111,7 +128,7 @@ export default function DashboardLayout({
                         <DialogHeader>
                           <DialogDescription className="pt-3 text-left text-base text-custom-green">
                             Make changes to your profile here. Click save when
-                            you're done.
+                            you&apos;re done.
                           </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
@@ -166,10 +183,14 @@ export default function DashboardLayout({
                       </DialogContent>
                     </Dialog>
                     <DropdownMenuItem className=" cursor-pointer py-2 focus:bg-custom-green focus:text-white">
-                      <Link className="flex" href="/login">
+                      <Button
+                        className="h-auto bg-transparent p-0 hover:bg-transparent"
+                        onClick={logout}
+                        variant="ghost"
+                      >
                         <LogOut className="mr-2 h-4 w-4" />
-                        <span>Log out</span>
-                      </Link>
+                        Log out
+                      </Button>
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                 </DropdownMenuContent>

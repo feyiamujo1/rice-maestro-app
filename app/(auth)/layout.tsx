@@ -1,9 +1,7 @@
 import Image from "next/image";
 
 export const metadata = {
-  title: "User Authentication | Upland Rice Maestro",
-  description:
-    'The rice farmer"s best companion. We provide every information you need to ensure a great harvest. ',
+  title: "Authentication",
 };
 
 export default function AuthLayout({
