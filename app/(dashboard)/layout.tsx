@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Squash as Hamburger } from "hamburger-react";
 import { LogOut, User } from "lucide-react";
 import { BsFillBellFill } from "react-icons/bs";
 
@@ -12,18 +16,33 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
+import { ToastWithAction } from "~/components/CustomToast";
 import SideBar from "~/components/Sidebar";
+
+// import { Toast } from "~/components/ui/toast";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="relative m-0 flex max-h-screen w-full bg-[#f9fafb] p-0">
-      <nav className="absolute inset-x-0 top-0 z-50 w-full bg-white py-2 shadow-md">
-        <div className="mx-auto flex w-11/12 justify-between">
-          <div className="flex items-center gap-0.5">
+    <div className=" m-0 flex min-h-screen w-full bg-[#f9fafb] p-0">
+      <nav className="fixed inset-x-0 top-0 z-50 w-full bg-white py-2 shadow-md">
+        <div className="mx-auto flex w-[96%] justify-between md:w-11/12">
+          <div className="flex items-center md:hidden">
+            <Hamburger
+              size={28}
+              toggled={isOpen}
+              toggle={setIsOpen}
+              color="#2c963f"
+              distance="md"
+              duration={0.3}
+              rounded
+            />
+          </div>
+          <div className="hidden items-center gap-0.5 md:flex">
             <Image
               width={70}
               height={60}
@@ -43,15 +62,16 @@ export default function DashboardLayout({
                 2
               </span>
             </div>
-            <div className="group flex h-12 w-12 cursor-pointer items-center overflow-hidden rounded-full">
+            <div className="group relative flex h-12 w-12 cursor-pointer items-center rounded-full">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Image
                     src="/images/default_profile.png"
-                    className="rounded-full object-cover object-center group-hover:scale-125"
+                    className="relative w-20 rounded-full object-cover object-center group-hover:scale-110 md:w-[55px]"
                     alt="profile"
                     width={55}
                     height={55}
+                    style={{ width: "auto" }}
                   />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="mr-2 w-56">
@@ -77,12 +97,14 @@ export default function DashboardLayout({
               </DropdownMenu>
             </div>
           </div>
+          <ToastWithAction />
         </div>
       </nav>
-      <div className="relative mr-2 flex h-full w-full gap-2 md:mr-4 md:gap-4">
-        <SideBar />
-        <main className="w-full bg-white px-2 pt-[90px] shadow-lg md:px-6">
-          <div className="py-4 ">{children}</div>
+      <div className="relative flex w-full gap-2 md:gap-4">
+        <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
+        <main className="w-full bg-white px-2 pb-10 pt-[90px] shadow-lg md:ml-[338px] md:px-6 ">
+          <div className="py-4">{children}</div>
+          {/* <Toast /> */}
         </main>
       </div>
     </div>

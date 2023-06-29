@@ -47,9 +47,9 @@ const routes = [
     path: "/harvesting-processes",
   },
   {
-    name: "Post Harvesting Processes",
+    name: "Storage Processes",
     icon: <GiBarn className="text-2xl md:text-lg" />,
-    path: "/post-harvesting-processes",
+    path: "/storage-processes",
   },
   {
     name: "Market Price & Information",
@@ -58,15 +58,30 @@ const routes = [
   },
 ];
 
-export default function SideBar() {
+export default function SideBar({
+  isOpen,
+  setIsOpen,
+}: {
+  isOpen: boolean;
+  setIsOpen: Function;
+}) {
   const currentRoute = usePathname();
 
   return (
-    <div className="h-screen space-y-4 bg-white px-2 py-10 pt-[100px] shadow-lg md:w-96 md:px-6">
+    <div
+      className={cn(
+        "fixed h-screen space-y-4 bg-white px-2 py-10 pt-[100px] shadow-lg transition-all md:w-80 md:px-6 md:opacity-100",
+        isOpen && "w-80 opacity-100",
+        !isOpen && "w-0 overflow-hidden opacity-0"
+      )}
+    >
       {routes.map((route) => (
         <div
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
           className={cn(
-            "flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-base font-semibold transition-all",
+            "flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-base font-semibold ",
             currentRoute === route.path &&
               "bg-custom-green text-white hover:bg-custom-hover-green",
             currentRoute !== route.path &&
@@ -75,7 +90,7 @@ export default function SideBar() {
         >
           <Link href={route.path} className="flex w-full items-center gap-2">
             {route.icon}
-            <span className="hidden md:block">{route.name}</span>
+            <span>{route.name}</span>
           </Link>
         </div>
       ))}

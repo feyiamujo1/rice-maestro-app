@@ -11,7 +11,7 @@ export default async function MainDashboard() {
   const section = await getSection("dashboard");
 
   return (
-    <div>
+    <div className="prose">
       <PortableText value={section?.content} />
     </div>
   );
