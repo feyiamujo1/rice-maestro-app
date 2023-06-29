@@ -16,7 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { ToastWithAction } from "~/components/CustomToast";
+// import { ToastWithAction } from "~/components/CustomToast";
 import SideBar from "~/components/Sidebar";
 
 // import { Toast } from "~/components/ui/toast";
@@ -97,7 +97,6 @@ export default function DashboardLayout({
               </DropdownMenu>
             </div>
           </div>
-          <ToastWithAction />
         </div>
       </nav>
       <div className="relative flex w-full gap-2 md:gap-4">
