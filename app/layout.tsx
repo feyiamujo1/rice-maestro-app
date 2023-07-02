@@ -1,5 +1,10 @@
+"use client";
+
+import { useEffect } from "react";
 import { Metadata } from "next";
 import { Nunito } from "next/font/google";
+
+import { regSW } from "~/lib/regSW";
 
 import "./globals.css";
 
@@ -19,6 +24,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  useEffect(() => {
+    regSW();
+  });
   return (
     <html lang="en">
       <body className={nunito.className}>{children}</body>
