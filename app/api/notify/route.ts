@@ -4,9 +4,7 @@ import { SIGNATURE_HEADER_NAME, isValidSignature } from "@sanity/webhook";
 import webPush from "~/lib/configuredWebpush";
 import client from "~/lib/sanity";
 
-// const secret = process.env.WEBHOOK_SECRET as string;
-const secret =
-  "d4b118d943bc1ac80788c51ffbebbdeececd4754ec355a851baa5fd81a05ad06";
+const secret = process.env.WEBHOOK_SECRET as string;
 
 export async function POST(request: Request) {
   const body = await request.json();
