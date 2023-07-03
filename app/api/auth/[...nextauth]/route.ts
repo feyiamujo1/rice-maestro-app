@@ -1,9 +1,9 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth";
 import { SanityAdapter, SanityCredentials } from "next-auth-sanity";
 
 import client from "~/lib/sanity";
 
-export const handler: NextAuthOptions = NextAuth({
+const handler = NextAuth({
   providers: [SanityCredentials(client)],
   session: {
     strategy: "jwt",

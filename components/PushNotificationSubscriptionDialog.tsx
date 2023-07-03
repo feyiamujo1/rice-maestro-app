@@ -1,3 +1,6 @@
+import { useState } from "react";
+
+import { saveSubscription, subscribePush } from "~/lib/utils";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,10 +15,14 @@ import {
 export default function PushNotificationSubDialog({
   showPushNotificationDialog,
   setShowPushNotificationDialog,
+  serviceWorkerRegistration,
 }: {
   showPushNotificationDialog: boolean;
   setShowPushNotificationDialog: Function;
+  serviceWorkerRegistration: ServiceWorkerRegistration | null;
 }) {
+  const [disable, setDisable] = useState(false);
+
   return (
     <AlertDialog open={showPushNotificationDialog}>
       <AlertDialogContent className="max-w-[365px] gap-y-2 rounded-lg sm:max-w-[600px]">
@@ -29,13 +36,29 @@ export default function PushNotificationSubDialog({
         <AlertDialogFooter>
           <AlertDialogCancel
             className="border-none bg-red-500 text-white outline-0 ring-0 hover:bg-[#999999] hover:text-white focus:ring-0 focus-visible:border-0 focus-visible:outline-0 focus-visible:ring-0"
-            onClick={() => setShowPushNotificationDialog(false)}
+            disabled={disable}
+            onClick={() => {
+              setShowPushNotificationDialog(false);
+            }}
           >
-            Disable
+            No, thanks
           </AlertDialogCancel>
           <AlertDialogAction
             className="border-none text-white outline-none hover:bg-custom-hover-green"
-            onClick={() => setShowPushNotificationDialog(false)}
+            disabled={disable}
+            onClick={() => {
+              setDisable(true);
+              Notification.requestPermission().then(async (permission) => {
+                setShowPushNotificationDialog(false);
+                setDisable(false);
+
+                if (permission === "granted") {
+                  const sub = await subscribePush(serviceWorkerRegistration!);
+
+                  await saveSubscription(sub);
+                }
+              });
+            }}
           >
             Enable
           </AlertDialogAction>

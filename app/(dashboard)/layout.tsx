@@ -9,6 +9,7 @@ import { LogOut, User } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { BsFillBellFill } from "react-icons/bs";
 
+import { regSW } from "~/lib/regSW";
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
@@ -43,6 +44,8 @@ export default function DashboardLayout({
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [serviceWorkerRegistration, setServiceWorkerRegistration] =
+    useState<ServiceWorkerRegistration | null>(null);
   const [showPushNotificationDialog, setShowPushNotificationDialog] =
     useState(false);
 
@@ -61,7 +64,15 @@ export default function DashboardLayout({
   const { data: session } = useSession();
 
   useEffect(() => {
-    setShowPushNotificationDialog(true);
+    regSW().then((registration) => {
+      if (registration) {
+        setServiceWorkerRegistration(registration);
+      }
+
+      if (Notification.permission === "default") {
+        setShowPushNotificationDialog(true);
+      }
+    });
   }, []);
 
   return (
@@ -208,6 +219,7 @@ export default function DashboardLayout({
         </div>
       </nav>
       <PushNotificationSubDialog
+        serviceWorkerRegistration={serviceWorkerRegistration}
         showPushNotificationDialog={showPushNotificationDialog}
         setShowPushNotificationDialog={setShowPushNotificationDialog}
       />
