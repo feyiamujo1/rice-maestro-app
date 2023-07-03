@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Metadata } from "next";
 import { Nunito } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 
 import { regSW } from "~/lib/regSW";
 
@@ -27,9 +28,12 @@ export default function RootLayout({
   useEffect(() => {
     regSW();
   });
+
   return (
     <html lang="en">
-      <body className={nunito.className}>{children}</body>
+      <body className={nunito.className}>
+        <SessionProvider>{children}</SessionProvider>
+      </body>
     </html>
   );
 }

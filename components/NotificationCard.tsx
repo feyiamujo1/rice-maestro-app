@@ -15,22 +15,22 @@ import {
 const notifications = [
   {
     title: "Pests & Diseases Control",
-    description: "New Post, View Now!",
+    description: "Click here to view now!",
     section: "",
   },
   {
     title: "Storage Processes",
-    description: "New Post, View Now!",
+    description: "Click here to view now!",
     section: "storage-processes",
   },
   {
     title: "Fertilizer Information",
-    description: "New Post, View Now!",
+    description: "Click here to view now!",
     section: "fertilizer-information",
   },
   {
     title: "Market Information",
-    description: "New Post, View Now!",
+    description: "Click here to view now!",
     section: "fertilizer-information",
   },
 ];
