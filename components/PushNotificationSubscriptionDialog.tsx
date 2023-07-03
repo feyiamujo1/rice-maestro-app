@@ -28,13 +28,13 @@ export default function PushNotificationSubDialog({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel
-            className="border-none ring-0 outline-0 focus:ring-0 bg-red-500 hover:bg-[#999999] text-white hover:text-white focus-visible:ring-0 focus-visible:outline-0 focus-visible:border-0"
+            className="border-none bg-red-500 text-white outline-0 ring-0 hover:bg-[#999999] hover:text-white focus:ring-0 focus-visible:border-0 focus-visible:outline-0 focus-visible:ring-0"
             onClick={() => setShowPushNotificationDialog(false)}
           >
             Disable
           </AlertDialogCancel>
           <AlertDialogAction
-            className="text-white hover:bg-custom-hover-green border-none outline-none"
+            className="border-none text-white outline-none hover:bg-custom-hover-green"
             onClick={() => setShowPushNotificationDialog(false)}
           >
             Enable

@@ -1,17 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
 // import { ToastWithAction } from "~/components/CustomToast";
 import { Squash as Hamburger } from "hamburger-react";
 import { LogOut, User } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { BsFillBellFill } from "react-icons/bs";
 
-import { NotificationCard } from "~/components/NotificationCard";
-import PushNotificationSubDialog from "~/components/PushNotificationSubscriptionDialog";
-import SideBar from "~/components/Sidebar";
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
@@ -19,7 +16,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTrigger
+  DialogTrigger,
 } from "~/components/ui/dialog";
 import {
   DropdownMenu,
@@ -28,10 +25,13 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import { NotificationCard } from "~/components/NotificationCard";
+import PushNotificationSubDialog from "~/components/PushNotificationSubscriptionDialog";
+import SideBar from "~/components/Sidebar";
 
 // import { Toast } from "~/components/ui/toast";
 
@@ -43,7 +43,8 @@ export default function DashboardLayout({
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const [showPushNotificationDialog, setShowPushNotificationDialog] = useState(false);
+  const [showPushNotificationDialog, setShowPushNotificationDialog] =
+    useState(false);
 
   const logout = async () => {
     setLoading(true);
@@ -64,7 +65,6 @@ export default function DashboardLayout({
   }, []);
 
   return (
-    
     <div className=" m-0 flex min-h-screen w-full bg-[#f9fafb] p-0">
       <nav className="fixed inset-x-0 top-0 z-50 w-full bg-white py-2 shadow-md">
         <div className="mx-auto flex w-[96%] justify-between md:w-11/12">
@@ -207,7 +207,10 @@ export default function DashboardLayout({
           </div>
         </div>
       </nav>
-      <PushNotificationSubDialog showPushNotificationDialog={showPushNotificationDialog} setShowPushNotificationDialog={setShowPushNotificationDialog} />
+      <PushNotificationSubDialog
+        showPushNotificationDialog={showPushNotificationDialog}
+        setShowPushNotificationDialog={setShowPushNotificationDialog}
+      />
       <div className="relative flex w-full gap-2 md:gap-4">
         <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
         <main className="w-full bg-white px-2 pb-10 pt-[90px] shadow-lg md:ml-[338px] md:px-6 ">
