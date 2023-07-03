@@ -1,5 +1,3 @@
-"use client";
-
 import { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
