@@ -18,9 +18,20 @@ export async function POST(request: Request) {
     const subscriptions = await client.fetch(`*[_type == "subscription"]`);
     const action = body.triggeredBy;
     const title =
-      action === "update" ? `${body.name} updated` : `${body.name} created`;
+      action === "update"
+        ? `${body.name} was updated`
+        : `${body.name} was created`;
 
-    await Promise.all(
+    // Create a new notification document
+    const newNotification = {
+      source: title,
+      slug: body.slug,
+      created_at: Date.now(),
+    };
+
+    console.log(newNotification)
+
+    await Promise.all([
       subscriptions.map((subscription: any) => {
         return webPush.sendNotification(
           subscription,
@@ -29,8 +40,11 @@ export async function POST(request: Request) {
             title,
           })
         );
-      })
-    );
+      }),
+      // Adding new notification
+      await client.create({ _type: "notification", ...newNotification }),
+      console.log(newNotification)
+    ]);
 
     return NextResponse.json({ message: "Notification sent" });
   } catch (err: any) {
