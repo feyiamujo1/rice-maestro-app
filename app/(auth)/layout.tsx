@@ -1,14 +1,25 @@
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+
+import { authOptions } from "~/lib/auth";
 
 export const metadata = {
-  title: "Authentication",
+  title: {
+    default: "Rice Meastro",
+    template: "%s | Rice Meastro",
+  },
 };
 
-export default function AuthLayout({
+export default async function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+
+  if (session?.user) redirect("/");
+
   return (
     <div className="relative m-0 w-full p-0">
       <nav className="inset-x-0 top-0 z-50 w-full bg-white py-2 shadow-md md:absolute">

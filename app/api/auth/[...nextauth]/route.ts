@@ -1,19 +1,7 @@
 import NextAuth from "next-auth";
-import { SanityAdapter, SanityCredentials } from "next-auth-sanity";
 
-import client from "~/lib/sanity";
+import { authOptions } from "~/lib/auth";
 
-const handler = NextAuth({
-  providers: [SanityCredentials(client)],
-  session: {
-    strategy: "jwt",
-  },
-  adapter: SanityAdapter(client),
-  secret: "process.env.NEXTAUTH_SECRET",
-  debug: true,
-  pages: {
-    signIn: "/signin",
-  },
-});
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
