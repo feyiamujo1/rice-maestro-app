@@ -23,6 +23,7 @@ export async function POST(request: Request) {
       _type: "subscription",
       endpoint: body.subscription.endpoint,
       keys: body.subscription.keys,
+      created_at: new Date().toISOString(),
     });
 
     return NextResponse.json({

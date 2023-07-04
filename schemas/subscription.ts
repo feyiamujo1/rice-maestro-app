@@ -1,6 +1,6 @@
-import { defineField } from "sanity";
+import { defineType } from "sanity";
 
-export const subscription = defineField({
+export const subscription = defineType({
   name: "subscription",
   title: "Subscription",
   type: "document",
@@ -36,4 +36,16 @@ export const subscription = defineField({
       type: "datetime",
     },
   ],
+  preview: {
+    select: {
+      title: "endpoint",
+      subtitle: "created_at",
+    },
+    prepare({ title, subtitle }) {
+      return {
+        title: `${title}`,
+        subtitle: `Subscribed at ${new Date(subtitle).toLocaleString() || ""}`,
+      };
+    },
+  },
 });
