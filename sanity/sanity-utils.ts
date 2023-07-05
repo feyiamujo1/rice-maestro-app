@@ -1,8 +1,8 @@
 import { groq } from "next-sanity";
 
+import { Notification } from "~/types/Notification";
 import { Section } from "~/types/Section";
 import client from "~/lib/sanity";
-import { Notification } from "~/types/Notification";
 
 export async function getSection(slug: string): Promise<Section> {
   return await client.fetch(

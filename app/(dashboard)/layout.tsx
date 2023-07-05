@@ -1,17 +1,16 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 // import { ToastWithAction } from "~/components/CustomToast";
 import { Squash as Hamburger } from "hamburger-react";
 import { LogOut, User } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { BsFillBellFill } from "react-icons/bs";
+import { getNotification } from "~/sanity/sanity-utils";
 
-import { NotificationCard } from "~/components/NotificationCard";
-import PushNotificationSubDialog from "~/components/PushNotificationSubscriptionDialog";
-import SideBar from "~/components/Sidebar";
+import { regSW } from "~/lib/regSW";
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
@@ -19,7 +18,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTrigger
+  DialogTrigger,
 } from "~/components/ui/dialog";
 import {
   DropdownMenu,
@@ -28,12 +27,13 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { regSW } from "~/lib/regSW";
-import { getNotification } from "~/sanity/sanity-utils";
+import { NotificationCard } from "~/components/NotificationCard";
+import PushNotificationSubDialog from "~/components/PushNotificationSubscriptionDialog";
+import SideBar from "~/components/Sidebar";
 
 // import { Toast } from "~/components/ui/toast";
 
@@ -49,8 +49,9 @@ export default function DashboardLayout({
     useState<ServiceWorkerRegistration | null>(null);
   const [showPushNotificationDialog, setShowPushNotificationDialog] =
     useState(false);
-  const [showNotificationDropdown, setShowNotificationDropdown] = useState(false);
-  
+  const [showNotificationDropdown, setShowNotificationDropdown] =
+    useState(false);
+
   const [notifications, setNotificatons] = useState<any>([]);
 
   const logout = async () => {
@@ -81,13 +82,12 @@ export default function DashboardLayout({
     });
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     async function retrieveNotification() {
       const response = await getNotification();
       setNotificatons(response);
     }
     retrieveNotification();
-    
   }, []);
 
   console.log(notifications);
@@ -123,23 +123,36 @@ export default function DashboardLayout({
           <div className="flex w-fit items-center gap-3">
             <Dialog open={showNotificationDropdown}>
               <DialogTrigger>
-                <div className="group relative flex w-fit cursor-pointer items-center" onClick={()=>{setShowNotificationDropdown(true)}}>
+                <div
+                  className="group relative flex w-fit cursor-pointer items-center"
+                  onClick={() => {
+                    setShowNotificationDropdown(true);
+                  }}
+                >
                   <BsFillBellFill className="fill-custom-green text-2xl group-hover:fill-custom-hover-green" />
-                  {
-                    notifications?.length >0 ?
+                  {notifications?.length > 0 ? (
                     <span className="absolute -right-2 -top-3 rounded-full bg-red-600 px-1.5 py-0.5 text-xs text-white">
                       {notifications?.length}
                     </span>
-                    : null
-                  }
+                  ) : null}
                 </div>
               </DialogTrigger>
-              <DialogContent className="max-w-[365px] gap-y-2 rounded-lg sm:max-w-[425px]">
-                <NotificationCard notifications={notifications} showNotificationDropdown={showNotificationDropdown} setShowNotificationDropdown={setShowNotificationDropdown} />
+              <DialogContent
+                className="max-w-[365px] gap-y-2 rounded-lg sm:max-w-[425px]"
+                // @ts-ignore
+                onClose={() => {
+                  setShowNotificationDropdown(false);
+                }}
+              >
+                <NotificationCard
+                  notifications={notifications}
+                  showNotificationDropdown={showNotificationDropdown}
+                  setShowNotificationDropdown={setShowNotificationDropdown}
+                />
               </DialogContent>
             </Dialog>
             <div className="group relative flex h-12 w-12 cursor-pointer items-center overflow-hidden rounded-full">
-              <DropdownMenu >
+              <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Image
                     src="/images/default_profile.png"
