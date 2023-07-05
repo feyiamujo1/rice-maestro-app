@@ -23,7 +23,7 @@ import { Input } from "./ui/input";
 
 export default function SignupForm() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [serverError, setServerError] = useState("");
   const router = useRouter();
   const form = useForm<z.infer<typeof SignupFormSchema>>({
     resolver: zodResolver(SignupFormSchema),
@@ -31,11 +31,11 @@ export default function SignupForm() {
 
   const onSubmit = async (value: z.infer<typeof SignupFormSchema>) => {
     setLoading(true);
-    setError("");
+    setServerError("");
 
     try {
       const newUser = await (
-        await fetch("http://localhost:3000/api/sanity/signUp", {
+        await fetch("/api/sanity/signUp", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -45,7 +45,10 @@ export default function SignupForm() {
       ).json();
 
       if (newUser?.error) {
-        setError(newUser.error);
+        form.setError("email", {
+          type: "custom",
+          message: newUser.error,
+        });
         return;
       }
 
@@ -56,13 +59,12 @@ export default function SignupForm() {
       });
 
       if (res?.error) {
-        setError(res.error);
-        return;
+        throw new Error(res.error);
       }
 
       router.push("/");
     } catch (error) {
-      setError("Something went wrong. Please try again later.");
+      setServerError("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -119,11 +121,11 @@ export default function SignupForm() {
                   type="tel"
                   placeholder="phone number"
                   {...field}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    const phone = value.replace(/\D/g, "");
-                    field.onChange(phone);
-                  }}
+                  // onChange={(e) => {
+                  //   const value = e.target.value;
+                  //   const phone = value.replace(/\D/g, "");
+                  //   field.onChange(phone);
+                  // }}
                 />
               </FormControl>
               <FormMessage />
@@ -148,8 +150,8 @@ export default function SignupForm() {
             </FormItem>
           )}
         />
-        {error && (
-          <div className="text-sm font-medium text-red-500">{error}</div>
+        {serverError && (
+          <div className="text-sm font-medium text-red-500">{serverError}</div>
         )}
         <div className="mt-6">
           <Button
