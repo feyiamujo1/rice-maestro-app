@@ -90,8 +90,6 @@ export default function DashboardLayout({
     retrieveNotification();
   }, []);
 
-  console.log(notifications);
-
   return (
     <div className=" m-0 flex min-h-screen w-full bg-[#f9fafb] p-0">
       <nav className="fixed inset-x-0 top-0 z-50 w-full bg-white py-2 shadow-md">

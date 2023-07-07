@@ -1,8 +1,6 @@
-import Link from "next/link";
 import { BellRing, Check } from "lucide-react";
+import Link from "next/link";
 
-import { Notification } from "~/types/Notification";
-import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -10,8 +8,10 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "~/components/ui/card";
+import { cn } from "~/lib/utils";
+import { Notification } from "~/types/Notification";
 
 export function NotificationCard({
   notifications,
@@ -24,7 +24,7 @@ export function NotificationCard({
 }) {
   return (
     <Card className={cn("w-full border-none py-0 shadow-none outline-none")}>
-      <CardHeader className="px-0">
+      <CardHeader className="px-0 py-2">
         <CardTitle className="mb-0 flex items-center gap-2 p-0">
           <BellRing />
           Notifications
@@ -34,7 +34,7 @@ export function NotificationCard({
           {notifications.length > 1 ? "s" : ""}.
         </CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-1.5 border-t p-0 py-2.5">
+      <CardContent className={cn("grid gap-1.5 border-t p-0 py-1.5 ", notifications.length > 4 && "border-b border-slate-200 max-h-[220px] overflow-y-scroll")}>
         <div>
           {notifications.map((notification, index) => (
             <div key={index}>
@@ -63,12 +63,12 @@ export function NotificationCard({
           ))}
         </div>
       </CardContent>
-      <CardFooter className="px-0">
+      <CardFooter className="px-0 pb-1">
         <Button
           onClick={() => {
             setShowNotificationDropdown(false);
           }}
-          className="mx-0 mt-1.5 w-full text-white active:bg-custom-hover-green md:hover:bg-custom-hover-green "
+          className={cn("mx-0 w-full text-white active:bg-custom-hover-green md:hover:bg-custom-hover-green ", notifications.length > 4 && "mt-3")}
         >
           <Check className="mr-2 h-4 w-4 " /> Mark all as read
         </Button>
