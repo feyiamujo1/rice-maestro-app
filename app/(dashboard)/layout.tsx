@@ -10,7 +10,6 @@ import { signOut, useSession } from "next-auth/react";
 import { BsFillBellFill } from "react-icons/bs";
 import { getNotification } from "~/sanity/sanity-utils";
 
-import { regSW } from "~/lib/regSW";
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
@@ -70,17 +69,17 @@ export default function DashboardLayout({
   // const notification = await getNotification();
   // console.log(notification);
 
-  useEffect(() => {
-    regSW().then((registration) => {
-      if (registration) {
-        setServiceWorkerRegistration(registration);
-      }
+  // useEffect(() => {
+  //   regSW().then((registration) => {
+  //     if (registration) {
+  //       setServiceWorkerRegistration(registration);
+  //     }
 
-      if (Notification.permission === "default") {
-        setShowPushNotificationDialog(true);
-      }
-    });
-  }, []);
+  //     if (Notification.permission === "default") {
+  //       setShowPushNotificationDialog(true);
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
     async function retrieveNotification() {
