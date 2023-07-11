@@ -106,13 +106,13 @@ export default function DashboardLayout({
             />
           </div>
           <div className="hidden items-center gap-0.5 md:flex">
-            <Image
+            {/* <Image
               width={70}
               height={60}
               src="/images/wheat-14.jpg"
               className=" object-fill"
               alt="logo"
-            />
+            /> */}
             <p className="flex flex-col -space-y-1 font-medium text-primary">
               <span>Rice</span>
               <span>Meastro</span>
