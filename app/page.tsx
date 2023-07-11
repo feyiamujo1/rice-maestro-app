@@ -1,3 +1,5 @@
+import LoginForm from "~/components/LoginForm";
+
 export default function Home() {
   return (
     <div className="p-0 m-0 w-full relative">
@@ -18,7 +20,7 @@ export default function Home() {
           </div>
         </div>
       </nav>
-      {/* <div className="flex flex-row w-full h-screen min-h-screen mx-auto">
+      <div className="flex flex-row w-full h-screen min-h-screen mx-auto">
         <div className="w-[950px] bg-login-image bg-cover bg-[60%] flex items-end py-10">
           <div className="w-10/12 mx-auto text-white space-y-6">
             <div>
@@ -61,7 +63,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
