@@ -1,10 +1,7 @@
-import Image from "next/image";
-import LoginForm from "~/components/LoginForm";
-
 export default function Home() {
   return (
     <div className="p-0 m-0 w-full relative">
-      <nav className="bg-white w-full absolute left-0 right-0 top-0 z-50 py-2 shadow-md">
+      {/* <nav className="bg-white w-full absolute left-0 right-0 top-0 z-50 py-2 shadow-md">
         <div className="w-11/12 mx-auto">
           <div className="flex items-center gap-0.5">
             <Image
@@ -16,7 +13,7 @@ export default function Home() {
             />
             <p className="flex flex-col -space-y-1 text-[#2c963f]">
               <span>Rice</span>
-              <span>Meastro</span>
+              <span>Maestro</span>
             </p>
           </div>
         </div>
@@ -43,9 +40,6 @@ export default function Home() {
                 Fertilizer scheduling, preventive and control measures for
                 sustainable pest and disease management.
               </li>
-              {/* <li className='ml-4'>
-                   based on crop stage, soil analysis, and nutrient deficiencies.
-                </li> */}
             </ol>
             <div className="w-full flex justify-end">
               <p>Sign up now!</p>
@@ -67,7 +61,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
