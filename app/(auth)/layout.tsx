@@ -1,8 +1,4 @@
 import Image from "next/image";
-import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
-
-import { authOptions } from "~/lib/auth";
 
 export const metadata = {
   title: {
@@ -16,9 +12,9 @@ export default async function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
 
-  if (session?.user) redirect("/");
+  // if (session?.user) redirect("/");
 
   return (
     <div className="relative m-0 w-full p-0">
