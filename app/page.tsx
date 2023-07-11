@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <div className="p-0 m-0 w-full relative">
-      {/* <nav className="bg-white w-full absolute left-0 right-0 top-0 z-50 py-2 shadow-md">
+      <nav className="bg-white w-full absolute left-0 right-0 top-0 z-50 py-2 shadow-md">
         <div className="w-11/12 mx-auto">
           <div className="flex items-center gap-0.5">
             <Image
@@ -18,7 +20,7 @@ export default function Home() {
           </div>
         </div>
       </nav>
-      <div className="flex flex-row w-full h-screen min-h-screen mx-auto">
+      {/* <div className="flex flex-row w-full h-screen min-h-screen mx-auto">
         <div className="w-[950px] bg-login-image bg-cover bg-[60%] flex items-end py-10">
           <div className="w-10/12 mx-auto text-white space-y-6">
             <div>
