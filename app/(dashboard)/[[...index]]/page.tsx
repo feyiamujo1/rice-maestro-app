@@ -1,8 +1,10 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { PortableText } from "@portabletext/react";
+import { getServerSession } from "next-auth";
 import { getSection } from "~/sanity/sanity-utils";
 
+import { authOptions } from "~/lib/auth";
 import { paramToPath } from "~/lib/utils";
 
 type Props = {
@@ -28,9 +30,9 @@ export default async function MainDashboard({
 }: {
   params: { index: string[] };
 }) {
-  // const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
-  // if (!session) redirect("/login");
+  if (!session) redirect("/login");
 
   const path = paramToPath(params.index);
   const section = await getSection(path === "/" ? "dashboard" : path);
