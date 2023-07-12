@@ -1,7 +1,12 @@
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+
+import { authOptions } from "~/lib/auth";
+
 export const metadata = {
   title: {
-    default: "Rice Meastro",
-    template: "%s | Rice Meastro",
+    default: "Rice Maestro",
+    template: "%s | Rice Maestro",
   },
 };
 
@@ -10,9 +15,9 @@ export default async function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
-  // if (session?.user) redirect("/");
+  if (session?.user) redirect("/");
 
   return (
     <div className="relative m-0 w-full p-0">
@@ -22,13 +27,13 @@ export default async function AuthLayout({
             {/* <Image
               width={70}
               height={60}
-              src="/images/wheat-14.jpg"
+              src={wheat}
               className=" object-fill"
               alt="logo"
             /> */}
             <p className="flex flex-col -space-y-1 text-primary">
               <span>Rice</span>
-              <span>Meastro</span>
+              <span>Maestro</span>
             </p>
           </div>
         </div>

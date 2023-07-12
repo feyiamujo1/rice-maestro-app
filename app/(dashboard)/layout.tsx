@@ -52,14 +52,14 @@ export default function DashboardLayout({
   const [showNotificationDropdown, setShowNotificationDropdown] =
     useState(false);
 
-  const [notifications, setNotificatons] = useState<any>([]);
+  const [notifications, setNotifications] = useState<any>([]);
 
   const logout = async () => {
     setLoading(true);
     try {
       const data = await signOut({ redirect: false, callbackUrl: "/login" });
 
-      router.push(data.url);
+      router.push("/login");
     } catch (error) {
       console.log(error);
     } finally {
@@ -85,7 +85,7 @@ export default function DashboardLayout({
   useEffect(() => {
     async function retrieveNotification() {
       const response = await getNotification();
-      setNotificatons(response);
+      setNotifications(response);
     }
     retrieveNotification();
   }, []);
@@ -115,7 +115,7 @@ export default function DashboardLayout({
             /> */}
             <p className="flex flex-col -space-y-1 font-medium text-primary">
               <span>Rice</span>
-              <span>Meastro</span>
+              <span>Maestro</span>
             </p>
           </div>
           <div className="flex w-fit items-center gap-3">
