@@ -53,6 +53,7 @@ export default function DashboardLayout({
     useState(false);
 
   const [notifications, setNotifications] = useState<any>([]);
+  const { data: session } = useSession();
 
   const logout = async () => {
     setLoading(true);
@@ -66,28 +67,23 @@ export default function DashboardLayout({
       setLoading(false);
     }
   };
-  const { data: session } = useSession();
-  // const notification = await getNotification();
-  // console.log(notification);
 
-  useEffect(() => {
-    regSW().then((registration) => {
-      if (registration) {
-        setServiceWorkerRegistration(registration);
-      }
-
-      if (Notification.permission === "default") {
-        setShowPushNotificationDialog(true);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    async function retrieveNotification() {
-      const response = await getNotification();
-      setNotifications(response);
+  const init = async () => {
+    const reg = await regSW();
+    if (reg) {
+      setServiceWorkerRegistration(reg);
     }
-    retrieveNotification();
+
+    if (Notification.permission === "default") {
+      setShowPushNotificationDialog(true);
+    }
+
+    const response = await getNotification();
+    setNotifications(response);
+  };
+
+  useEffect(() => {
+    init();
   }, []);
 
   return (
@@ -163,7 +159,7 @@ export default function DashboardLayout({
                 <DropdownMenuContent className="mr-2 w-56">
                   <DropdownMenuLabel className=" whitespace-normal break-words">
                     {session?.user?.name}
-                    <br></br>
+                    <br />
                     {session?.user?.email}
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
