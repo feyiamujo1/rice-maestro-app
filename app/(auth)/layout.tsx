@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
+// import Image from "next/image";
 import { authOptions } from "~/lib/auth";
-import Logo from "~/public/images/wheat-14.jpg";
-import Image from "next/image";
+// import Logo from "~/public/images/wheat-14.jpg";
 
 export const metadata = {
   title: {
