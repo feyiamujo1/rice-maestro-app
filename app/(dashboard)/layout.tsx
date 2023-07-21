@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 // import { ToastWithAction } from "~/components/CustomToast";
 import { Squash as Hamburger } from "hamburger-react";
 import { LogOut, User } from "lucide-react";
@@ -10,7 +10,9 @@ import { signOut, useSession } from "next-auth/react";
 import { BsFillBellFill } from "react-icons/bs";
 import { getNotification } from "~/sanity/sanity-utils";
 
-import { regSW } from "~/lib/regSW";
+import { NotificationCard } from "~/components/NotificationCard";
+import PushNotificationSubDialog from "~/components/PushNotificationSubscriptionDialog";
+import SideBar from "~/components/Sidebar";
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
@@ -18,7 +20,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTrigger,
+  DialogTrigger
 } from "~/components/ui/dialog";
 import {
   DropdownMenu,
@@ -27,13 +29,12 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "~/components/ui/dropdown-menu";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { NotificationCard } from "~/components/NotificationCard";
-import PushNotificationSubDialog from "~/components/PushNotificationSubscriptionDialog";
-import SideBar from "~/components/Sidebar";
+import { regSW } from "~/lib/regSW";
+import Logo from "~/public/images/wheat-14.jpg";
 
 // import { Toast } from "~/components/ui/toast";
 
@@ -102,13 +103,13 @@ export default function DashboardLayout({
             />
           </div>
           <div className="hidden items-center gap-0.5 md:flex">
-            {/* <Image
+            <Image
               width={70}
               height={60}
-              src="/images/wheat-14.jpg"
+              src={Logo}
               className=" object-fill"
               alt="logo"
-            /> */}
+            />
             <p className="flex flex-col -space-y-1 font-medium text-primary">
               <span>Rice</span>
               <span>Maestro</span>

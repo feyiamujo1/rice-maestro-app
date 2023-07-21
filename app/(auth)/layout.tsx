@@ -1,7 +1,9 @@
-import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 import { authOptions } from "~/lib/auth";
+import Logo from "~/public/images/wheat-14.jpg";
+import Image from "next/image";
 
 export const metadata = {
   title: {
@@ -24,13 +26,13 @@ export default async function AuthLayout({
       <nav className="inset-x-0 top-0 z-50 w-full bg-white py-2 shadow-md md:absolute">
         <div className="mx-auto w-11/12">
           <div className="flex items-center gap-0.5">
-            {/* <Image
+            <Image
               width={70}
               height={60}
-              src={wheat}
+              src={Logo}
               className=" object-fill"
               alt="logo"
-            /> */}
+            />
             <p className="flex flex-col -space-y-1 text-primary">
               <span>Rice</span>
               <span>Maestro</span>
