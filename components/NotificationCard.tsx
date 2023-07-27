@@ -55,7 +55,7 @@ export function NotificationCard({
                     : `/${notification.slug}`
                 }
               >
-                <span className="flex h-2 w-2 translate-y-1 rounded-full bg-custom-green" />
+                <span className="flex h-2 w-2 translate-y-1 rounded-full bg-[#999999]" />
                 <div className="space-y-1">
                   <p className="text-sm font-medium leading-none">
                     {notification.source + " was " + notification.action + "d"}
