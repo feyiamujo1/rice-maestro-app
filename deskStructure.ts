@@ -1,14 +1,14 @@
 import { ConfigContext } from "sanity";
 import { StructureBuilder } from "sanity/desk";
 
-const schemasToHide = ["account", "subscription", "notification"];
+const schemasToHide = ["account", "subscription", "notification", "user"];
 
 export const structure = (S: StructureBuilder, context: ConfigContext) => {
   const { currentUser } = context;
 
   const shouldShow =
     currentUser?.email.includes("odunsi") ||
-    currentUser?.email.includes("feyisayo");
+    currentUser?.email.includes("amujoyegbe");
 
   return S.list()
     .title("Rice Maestro")
