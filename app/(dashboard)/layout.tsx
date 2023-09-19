@@ -1,16 +1,14 @@
 "use client";
 
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 // import { ToastWithAction } from "~/components/CustomToast";
 import { Squash as Hamburger } from "hamburger-react";
 import { LogOut, User } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { BsFillBellFill } from "react-icons/bs";
 import { PiPottedPlantFill } from "react-icons/pi";
-import { getNotification } from "~/sanity/sanity-utils";
-
 import { NotificationCard } from "~/components/NotificationCard";
 import PushNotificationSubDialog from "~/components/PushNotificationSubscriptionDialog";
 import SideBar from "~/components/Sidebar";
@@ -35,12 +33,14 @@ import {
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { regSW } from "~/lib/regSW";
+import { getNotification } from "~/sanity/sanity-utils";
+
 // import Logo from "~/public/images/wheat-14.jpg";
 
 // import { Toast } from "~/components/ui/toast";
 
 export default function DashboardLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {
@@ -91,7 +91,7 @@ export default function DashboardLayout({
   return (
     <div className=" m-0 flex min-h-screen w-full bg-[#f9fafb] p-0">
       <nav className="fixed inset-x-0 top-0 z-50 w-full bg-white py-2 shadow-md">
-        <div className="mx-auto flex w-[96%] justify-between md:w-11/12">
+        <div className="mx-auto flex w-[95%] md:w-[97%] justify-between">
           <div className="flex items-center md:hidden">
             <Hamburger
               size={28}
@@ -111,13 +111,13 @@ export default function DashboardLayout({
               className=" object-fill"
               alt="logo"
             /> */}
-            <p className="flex gap-2">
-              <PiPottedPlantFill className=" text-2xl" />
-              <div className="flex flex-col -space-y-1 font-semibold text-primary">
-              <span>Rice</span>
-              <span>Maestro</span>
-              </div>
-            </p>
+            <div className="flex items-center gap-2">
+              <PiPottedPlantFill className=" text-4xl text-custom-green" /> 
+              <p className="flex flex-col -space-y-1 font-semibold text-primary">
+                <span>Rice</span>
+                <span>Maestro</span>
+              </p>
+            </div>
           </div>
           <div className="flex w-fit items-center gap-3">
             <Dialog open={showNotificationDropdown}>
@@ -126,8 +126,7 @@ export default function DashboardLayout({
                   className="group relative flex w-fit cursor-pointer items-center"
                   onClick={() => {
                     setShowNotificationDropdown(true);
-                  }}
-                >
+                  }}>
                   <BsFillBellFill className="fill-custom-green text-2xl group-hover:fill-custom-hover-green" />
                   {notifications?.length > 0 ? (
                     <span className="absolute -right-2 -top-3 rounded-full bg-red-600 px-1.5 py-0.5 text-xs text-white">
@@ -141,8 +140,7 @@ export default function DashboardLayout({
                 // @ts-ignore
                 onClose={() => {
                   setShowNotificationDropdown(false);
-                }}
-              >
+                }}>
                 <NotificationCard
                   notifications={notifications}
                   showNotificationDropdown={showNotificationDropdown}
@@ -227,8 +225,7 @@ export default function DashboardLayout({
                         <DialogFooter className=" flex flex-row items-center justify-end gap-4">
                           <Button
                             type="submit"
-                            className="text-white hover:bg-custom-hover-green"
-                          >
+                            className="text-white hover:bg-custom-hover-green">
                             Save changes
                           </Button>
                         </DialogFooter>
@@ -238,8 +235,7 @@ export default function DashboardLayout({
                       <Button
                         className="h-auto bg-transparent p-0 hover:bg-transparent"
                         onClick={logout}
-                        variant="ghost"
-                      >
+                        variant="ghost">
                         <LogOut className="mr-2 h-4 w-4" />
                         Log out
                       </Button>

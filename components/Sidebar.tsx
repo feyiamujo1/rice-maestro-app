@@ -5,24 +5,24 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { BiSolidContact } from "react-icons/bi";
 import {
-  BsFillInfoCircleFill,
-  BsFillFileEarmarkPersonFill
+  BsFillFileEarmarkPersonFill,
+  BsFillInfoCircleFill
 } from "react-icons/bs";
 import { FaMoneyBillTrendUp, FaTractor } from "react-icons/fa6";
 import {
-  GiFertilizerBag,
-  GiPlantSeed,
   GiAppleSeeds,
-  GiPlantWatering,
   GiBarn,
-  GiWindmill,
+  GiCampCookingPot,
   GiChipsBag,
   GiDigDug,
+  GiFertilizerBag,
+  GiGloves,
+  GiGroundSprout,
   GiHammerSickle,
   GiHotMeal,
-  GiGloves,
-  GiCampCookingPot,
-  GiGroundSprout
+  GiPlantSeed,
+  GiPlantWatering,
+  GiWindmill
 } from "react-icons/gi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { MdDashboard, MdLandslide, MdPestControl } from "react-icons/md";
@@ -283,9 +283,9 @@ export default function SideBar({
                 (route?.name === "Post-Harvesting Information" &&
                   showPostHarvestingInfo) ||
                 (route?.name === "Other Information" && showOtherInfo) ? (
-                  <IoIosArrowDown className="group-hover:fill-custom-green text-xl transition-all duration-300 ease-in" />
-                ) : (
                   <IoIosArrowUp className="group-hover:fill-custom-green text-xl transition-all duration-300 ease-in" />
+                ) : (
+                  <IoIosArrowDown className="group-hover:fill-custom-green text-xl transition-all duration-300 ease-in" />
                 )}
               </span>
             </button>
@@ -309,11 +309,11 @@ export default function SideBar({
                     setIsOpen(!isOpen);
                   }}
                   className={cn(
-                    "flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-base font-semibold ",
+                    "flex cursor-pointer items-center gap-2 rounded-md pl-4 px-2 py-1.5 text-base font-medium ",
                     currentRoute === innerroute?.path &&
                       "bg-custom-green text-white hover:bg-custom-hover-green",
                     currentRoute !== innerroute?.path &&
-                      "bg-[#f9fafb] text-black hover:bg-custom-green hover:text-white"
+                      "bg-[#f9fafb] text-[#000000] hover:bg-custom-green hover:text-white"
                   )}>
                   <Link
                     href={innerroute?.path}
