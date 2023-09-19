@@ -8,6 +8,7 @@ import { Squash as Hamburger } from "hamburger-react";
 import { LogOut, User } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { BsFillBellFill } from "react-icons/bs";
+import { PiPottedPlantFill } from "react-icons/pi";
 import { getNotification } from "~/sanity/sanity-utils";
 
 import { NotificationCard } from "~/components/NotificationCard";
@@ -110,9 +111,12 @@ export default function DashboardLayout({
               className=" object-fill"
               alt="logo"
             /> */}
-            <p className="flex flex-col -space-y-1 font-medium text-primary">
+            <p className="flex gap-2">
+              <PiPottedPlantFill className=" text-2xl" />
+              <div className="flex flex-col -space-y-1 font-semibold text-primary">
               <span>Rice</span>
               <span>Maestro</span>
+              </div>
             </p>
           </div>
           <div className="flex w-fit items-center gap-3">
@@ -254,7 +258,7 @@ export default function DashboardLayout({
       />
       <div className="relative flex w-full gap-2 md:gap-4">
         <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
-        <main className="w-full bg-white px-2 pb-10 pt-[90px] shadow-lg md:ml-[338px] md:px-6 ">
+        <main className="w-full bg-white px-2 pb-10 pt-[90px] shadow-lg md:ml-[358px] md:px-6 ">
           <div className="py-4">{children}</div>
         </main>
       </div>
