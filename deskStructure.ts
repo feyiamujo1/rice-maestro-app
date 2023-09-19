@@ -1,7 +1,7 @@
 import { ConfigContext } from "sanity";
 import { StructureBuilder } from "sanity/desk";
 
-const schemasToHide = ["account", "subscription", "notification", "user"];
+const schemasToHide = ["account", "subscription", "notification", "user", "section"];
 
 export const structure = (S: StructureBuilder, context: ConfigContext) => {
   const { currentUser } = context;
