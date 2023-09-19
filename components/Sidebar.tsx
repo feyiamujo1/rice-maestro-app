@@ -213,8 +213,8 @@ export default function SideBar({
   setIsOpen: Function;
 }) {
   const currentRoute = usePathname();
-  const [showOtherInfo, setShowOtherInfo] = useState(true);
-  const [showPrePlantingInfo, setShowPrePlantingInfo] = useState(false);
+  const [showOtherInfo, setShowOtherInfo] = useState(false);
+  const [showPrePlantingInfo, setShowPrePlantingInfo] = useState(true);
   const [showPostPlantingInfo, setShowPostPlantingInfo] = useState(false);
   const [showPostHarvestingInfo, setShowPostHarvestingInfo] = useState(false);
 

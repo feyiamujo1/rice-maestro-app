@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { PiPottedPlantFill } from "react-icons/pi";
 
 // import Image from "next/image";
 import { authOptions } from "~/lib/auth";
@@ -24,7 +25,7 @@ export default async function AuthLayout({
   return (
     <div className="relative m-0 w-full p-0">
       <nav className="inset-x-0 top-0 z-50 w-full bg-white py-2 shadow-md md:absolute">
-        <div className="mx-auto w-11/12">
+        <div className="mx-auto w-[95%] md:w-[97%]">
           <div className="flex items-center gap-0.5">
             {/* <Image
               width={70}
@@ -33,10 +34,13 @@ export default async function AuthLayout({
               className=" object-fill"
               alt="logo"
             /> */}
-            <p className="flex flex-col -space-y-1 text-primary">
-              <span>Rice</span>
-              <span>Maestro</span>
-            </p>
+            <div className="flex items-center gap-2">
+              <PiPottedPlantFill className=" text-4xl text-custom-green" /> 
+              <p className="flex flex-col -space-y-1 font-semibold text-primary">
+                <span>Rice</span>
+                <span>Maestro</span>
+              </p>
+            </div>
           </div>
         </div>
       </nav>
